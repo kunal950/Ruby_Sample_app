@@ -1,14 +1,20 @@
-<footer class="footer">
- <small>
- The <a href="https://www.railstutorial.org/">Ruby on Rails
-Tutorial</a>
- by <a href="https://www.michaelhartl.com/">Michael Hartl</a>
- </small>
- <nav>
-  <ul>
- <li><%= link_to "About", about_path %></li>
- <li><%= link_to "Contact", contact_path %></li>
- <li><a href="https://news.railstutorial.org/">News</a></li>
- </ul>
- </nav>
+<footer class="footer mt-auto py-3 bg-light border-top">
+  <div class="container">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+      
+      <small class="text-muted mb-2 mb-md-0">
+        The <a href="https://www.railstutorial.org/" class="text-decoration-none">Ruby on Rails Tutorial</a>
+        by <a href="https://www.michaelhartl.com/" class="text-decoration-none">Michael Hartl</a>
+      </small>
+
+      <nav>
+        <ul class="nav justify-content-center justify-content-md-end">
+          <li class="nav-item"><%= link_to "About", about_path, class: "nav-link px-2 text-muted" %></li>
+          <li class="nav-item"><%= link_to "Contact", contact_path, class: "nav-link px-2 text-muted" %></li>
+          <li class="nav-item"><a href="https://news.railstutorial.org/" class="nav-link px-2 text-muted">News</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </div>
 </footer>

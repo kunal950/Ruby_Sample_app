@@ -201,3 +201,15 @@ input {
     }
   }
 }
+
+.dropdown-menu.active {
+  display: block;
+}
+
+/* Only use this if you are manually toggling the 'active' class via JS */
+.dropdown-menu.active {
+  display: block !important;
+  position: absolute;
+  left: 0;
+  top: 100%;
+}

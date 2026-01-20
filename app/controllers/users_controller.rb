@@ -9,6 +9,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      reset_session
+      log_in @user
       flash[:success] = "Welcome to the Sample App!"
       redirect_to @user
     else
@@ -23,7 +25,16 @@ class UsersController < ApplicationController
       flash[:danger] = "User not found. Please sign up."
       redirect_to signup_url # Or render "new" as you had it
     end
-    # debugger
+    if logged_in?
+      if @user != current_user
+        flash[:danger] = "You can only view your own profile."
+        redirect_to root_url
+      end
+      @user = current_user
+    else
+      flash[:danger] = "Please log in.To see the User."
+      redirect_to login_url
+    end
   end
 
   private
