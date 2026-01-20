@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: ruby-sample-app
+    runtime: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec thruster bin/rails server"
+    envVars:
+      - key: RAILS_MASTER_KEY
+        sync: false # You will enter this manually in the Render dashboard
+      - key: DATABASE_URL
+        fromDatabase:
+          name: sample-app-db
+          property: connectionString
+
+databases:
+  - name: sample-app-db
+    plan: free # Use the free tier
