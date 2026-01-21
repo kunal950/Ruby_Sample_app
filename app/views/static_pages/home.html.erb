@@ -7,9 +7,14 @@
 Tutorial</a>
  sample application.
 </h2>
- <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btnprimary" %>
+<% if logged_in? %>
+ <%= link_to "Hi", "#", class: "btn btn-lg btnprimary" %>
+</div>
+<% else %>
+  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btnprimary" %>
 </div>
 <%= link_to image_tag("rails.svg", alt: "Rails logo", width:
 "200"),
  "https://rubyonrails.org/" %>
+<% end %>
  <%# <%= image_tag("kitten.jpg" , alt: "Kitten", width: "200")%>
