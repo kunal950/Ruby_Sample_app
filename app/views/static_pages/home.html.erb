@@ -13,12 +13,6 @@ Tutorial</a>
   <% current_user.attributes.each do |key, value| %>
     <p><strong><%= key.humanize %></strong>: <%= value %></p>
   <% end %>
-  <h3>Session Data</h3>
-  <% session.to_hash.each do |key, value| %>
-    <p><strong><%= key %></strong>: <%= value %></p>
-  <% end %>
-
-  <p><strong>Full Session Hash:</strong> <%= session.to_hash.inspect %></p>
 <% else %>
   <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btnprimary" %>
 </div>

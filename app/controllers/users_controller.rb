@@ -8,16 +8,15 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.where(activated: true).paginate(page: params[:page])
   end
 
   def create
     @user = User.new(user_params)
     if @user.save
-      reset_session
-      log_in @user
-      flash[:success] = "Welcome to the Sample App!"
-      redirect_to @user
+      @user.send_activation_email
+      flash[:info] = "Please check your email to activate your account."
+      redirect_to root_url
     else
       render "new", status: :unprocessable_entity
     end
@@ -31,12 +30,16 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
 
     if @user.nil?
-      flash[:danger] = "User not found. Please sign up."
+      flash[:danger] = "User not found."
       redirect_to signup_url # Or render "new" as you had it
     end
     unless logged_in?
       flash[:danger] = "Please log in.To see the User."
       redirect_to login_url
+    end
+    unless @user.activated?
+      flash[:danger] = "User not activated.Please activate your account."
+      redirect_to root_url
     end
   end
 
