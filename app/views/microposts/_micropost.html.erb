@@ -6,7 +6,6 @@
     <% if micropost.image.attached? %>
       <%= image_tag micropost.image.variant(:display) %>
     <% end %>
-    <%= image_tag micropost.image, style: "display: block; width: 400px; height: auto;" if micropost.image.attached? %>
   </span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(micropost.created_at) %> ago.
